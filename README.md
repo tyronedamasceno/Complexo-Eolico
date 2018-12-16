@@ -10,7 +10,7 @@ Este sistema é um gerenciador para redes de **Complexos Eólicos**.
 ## Configurações do sistema
 
 -  Java 8
--  Spring Boot 2.1.1
+-  Spring Boot 2.0.4
 
 ## Como usar
 
