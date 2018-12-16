@@ -1,6 +1,8 @@
 package com.tyrone.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ParqueEolico implements Serializable {
@@ -25,11 +28,12 @@ public class ParqueEolico implements Serializable {
 	@JoinColumn(name="complexo_eolico_id")
 	private ComplexoEolico complexo;
 	
+	@OneToMany(mappedBy="parque")
+	private List<Aerogerador> aerogeradores = new ArrayList<>();
+	
 	public ParqueEolico() {
 		
 	}
-
-	
 
 	public ParqueEolico(Integer id, String nome, Integer latitude, Integer longitude, Double potenciaInstalada,
 			ComplexoEolico complexo) {
@@ -90,6 +94,14 @@ public class ParqueEolico implements Serializable {
 
 	public void setComplexo(ComplexoEolico complexo) {
 		this.complexo = complexo;
+	}
+
+	public List<Aerogerador> getAerogeradores() {
+		return aerogeradores;
+	}
+
+	public void setAerogeradores(List<Aerogerador> aerogeradores) {
+		this.aerogeradores = aerogeradores;
 	}
 
 	@Override
