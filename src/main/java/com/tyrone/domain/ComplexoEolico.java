@@ -1,11 +1,14 @@
 package com.tyrone.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ComplexoEolico implements Serializable {
@@ -17,6 +20,9 @@ public class ComplexoEolico implements Serializable {
 	private String nome;
 	private String uf;
 	private String identificador;
+	
+	@OneToMany(mappedBy="complexo")
+	private List<ParqueEolico> parques = new ArrayList<>();
 	
 	public ComplexoEolico() {
 		
@@ -60,6 +66,14 @@ public class ComplexoEolico implements Serializable {
 
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
+	}
+
+	public List<ParqueEolico> getParques() {
+		return parques;
+	}
+
+	public void setParques(List<ParqueEolico> parques) {
+		this.parques = parques;
 	}
 
 	@Override
