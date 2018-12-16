@@ -44,7 +44,7 @@ public class ComplexoEolicoService {
 		try {
 			repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível um Complexo eólico que possui parques eólicos");
+			throw new DataIntegrityException("Não é possível remover um complexo eólico que possui parques eólicos");
 		}
 	}
 	
