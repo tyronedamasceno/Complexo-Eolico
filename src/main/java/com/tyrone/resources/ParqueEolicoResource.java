@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.tyrone.domain.Aerogerador;
 import com.tyrone.domain.ParqueEolico;
 import com.tyrone.services.ParqueEolicoService;
 
@@ -55,13 +56,10 @@ public class ParqueEolicoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-
-
-
-
-
-
-
-
+	@RequestMapping(value="/{id}/aerogeradores")
+	public ResponseEntity<List<Aerogerador>> findAerogeradoresInParque(@PathVariable Integer id) {
+		List<Aerogerador> lista = service.findAerogeradoresInParque(id);
+		return ResponseEntity.ok().body(lista);
+	}
 }
 

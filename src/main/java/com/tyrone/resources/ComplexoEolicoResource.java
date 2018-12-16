@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tyrone.domain.ComplexoEolico;
+import com.tyrone.domain.ParqueEolico;
 import com.tyrone.services.ComplexoEolicoService;
 
 @RestController
@@ -55,13 +56,10 @@ public class ComplexoEolicoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-
-
-
-
-
-
-
-
+	@RequestMapping(value="/{id}/parques")
+	public ResponseEntity<List<ParqueEolico>> findParquesInComplexo(@PathVariable Integer id) {
+		List<ParqueEolico> lista = service.findParquesInComplexo(id);
+		return ResponseEntity.ok().body(lista);
+	}
 }
 

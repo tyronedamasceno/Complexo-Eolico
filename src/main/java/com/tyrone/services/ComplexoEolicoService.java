@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.tyrone.domain.ComplexoEolico;
+import com.tyrone.domain.ParqueEolico;
 import com.tyrone.repositories.ComplexoEolicoRepository;
 import com.tyrone.services.exceptions.DataIntegrityException;
 import com.tyrone.services.exceptions.ObjectNotFoundException;
@@ -46,6 +47,11 @@ public class ComplexoEolicoService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível remover um complexo eólico que possui parques eólicos");
 		}
+	}
+	
+	public List<ParqueEolico> findParquesInComplexo(Integer id) {
+		ComplexoEolico obj = findById(id);
+		return obj.getParques();
 	}
 	
 	private void updateData(ComplexoEolico newObj, ComplexoEolico obj) {

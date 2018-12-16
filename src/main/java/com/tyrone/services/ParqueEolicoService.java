@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.tyrone.domain.Aerogerador;
 import com.tyrone.domain.ParqueEolico;
 import com.tyrone.repositories.ParqueEolicoRepository;
 import com.tyrone.services.exceptions.DataIntegrityException;
@@ -46,6 +47,11 @@ public class ParqueEolicoService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível remover um parque eólico que possui aerogeradores");
 		}
+	}
+	
+	public List<Aerogerador> findAerogeradoresInParque(Integer id) {
+		ParqueEolico obj = findById(id);
+		return obj.getAerogeradores();
 	}
 	
 	private void updateData(ParqueEolico newObj, ParqueEolico obj) {
