@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ComplexoEolico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +23,7 @@ public class ComplexoEolico implements Serializable {
 	private String uf;
 	private String identificador;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="complexo")
 	private List<ParqueEolico> parques = new ArrayList<>();
 	

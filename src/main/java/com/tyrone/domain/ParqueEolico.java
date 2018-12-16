@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ParqueEolico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class ParqueEolico implements Serializable {
 	@JoinColumn(name="complexo_eolico_id")
 	private ComplexoEolico complexo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="parque")
 	private List<Aerogerador> aerogeradores = new ArrayList<>();
 	
