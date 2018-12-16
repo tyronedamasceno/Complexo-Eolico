@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tyrone.domain.ComplexoEolico;
 import com.tyrone.repositories.ComplexoEolicoRepository;
+import com.tyrone.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ComplexoEolicoService {
@@ -16,7 +17,7 @@ public class ComplexoEolicoService {
 	
 	public ComplexoEolico findById(Integer id) {
 		Optional<ComplexoEolico> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id 
+				+ ", Tipo: " + ComplexoEolico.class.getName()));
 	}
-	
 }
