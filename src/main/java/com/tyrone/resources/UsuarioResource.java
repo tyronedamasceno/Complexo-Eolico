@@ -34,7 +34,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(lista);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="sign-up", method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Usuario obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder

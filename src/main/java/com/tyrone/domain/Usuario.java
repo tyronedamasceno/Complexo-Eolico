@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tyrone.domain.enums.Perfil;
 
 @Entity
@@ -26,7 +25,6 @@ public class Usuario implements Serializable {
 	
 	private String username;
 	
-	@JsonIgnore
 	private String password;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
