@@ -1,11 +1,20 @@
 package com.tyrone.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tyrone.domain.enums.Perfil;
 
 @Entity
 public class Usuario implements Serializable {
@@ -16,10 +25,16 @@ public class Usuario implements Serializable {
 	private Integer id;
 	
 	private String username;
+	
+	@JsonIgnore
 	private String password;
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	public Usuario() {
-		
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Usuario(Integer id, String username, String password) {
@@ -27,6 +42,7 @@ public class Usuario implements Serializable {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -51,6 +67,14 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 	@Override

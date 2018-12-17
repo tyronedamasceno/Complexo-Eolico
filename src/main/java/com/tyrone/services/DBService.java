@@ -3,12 +3,14 @@ package com.tyrone.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tyrone.domain.Aerogerador;
 import com.tyrone.domain.ComplexoEolico;
 import com.tyrone.domain.ParqueEolico;
 import com.tyrone.domain.Usuario;
+import com.tyrone.domain.enums.Perfil;
 import com.tyrone.repositories.AerogeradorRepository;
 import com.tyrone.repositories.ComplexoEolicoRepository;
 import com.tyrone.repositories.ParqueEolicoRepository;
@@ -29,6 +31,8 @@ public class DBService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public void instantiateTestDatabase() {
 		ComplexoEolico c1 = new ComplexoEolico(null, "Complexo 1", "RN", "CE1");
@@ -60,8 +64,10 @@ public class DBService {
 		aerogeradorRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7));
 		
 		
-		Usuario user = new Usuario(null, "tyrone", "123");
-		usuarioRepository.save(user);
+		Usuario user = new Usuario(null, "tyrone", bCryptPasswordEncoder.encode("123"));
+		user.addPerfil(Perfil.ADMIN);
+		Usuario logap = new Usuario(null, "logap", bCryptPasswordEncoder.encode("senha"));
+		usuarioRepository.saveAll(Arrays.asList(user, logap));
 	}
 	
 }
