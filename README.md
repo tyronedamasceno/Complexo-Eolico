@@ -16,4 +16,5 @@ Este sistema é um gerenciador para redes de **Complexos Eólicos**.
 
 O sistema está hospedado no *Heroku* e suas URLs podem ser encontradas na [documentação da API](docs.md).
 
-Solicite suas credenciais aos desenvolvedores.
+## Autor
+[@tyronedamasceo](https://github.com/tyronedamasceno)
