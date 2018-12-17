@@ -10,9 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.tyrone.domain.Aerogerador;
 import com.tyrone.domain.ComplexoEolico;
 import com.tyrone.domain.ParqueEolico;
+import com.tyrone.domain.Usuario;
 import com.tyrone.repositories.AerogeradorRepository;
 import com.tyrone.repositories.ComplexoEolicoRepository;
 import com.tyrone.repositories.ParqueEolicoRepository;
+import com.tyrone.repositories.UsuarioRepository;
 
 @SpringBootApplication
 public class ComplexoEolicoApplication implements CommandLineRunner{
@@ -25,6 +27,9 @@ public class ComplexoEolicoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private AerogeradorRepository aerogeradorRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ComplexoEolicoApplication.class, args);
@@ -59,6 +64,10 @@ public class ComplexoEolicoApplication implements CommandLineRunner{
 		complexoEolicoRepository.saveAll(Arrays.asList(c1, c2));
 		parqueEolicoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 		aerogeradorRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7));
+		
+		
+		Usuario user = new Usuario(null, "tyrone", "123");
+		usuarioRepository.save(user);
 		
 	}
 
