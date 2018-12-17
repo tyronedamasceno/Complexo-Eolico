@@ -6,6 +6,11 @@ Para usar o sistema, certifique-se de ter suas credenciais em mãos.
 
 ## Endpoints
 
+- /usuarios/sign-up
+    - **POST** - Esta requisição adiciona um usuário no banco com as credenciais informadas que poderão ser usadas para fazer login:
+        - *username* : string
+        - *password* : string
+
 - /login
     - **POST** - Esta requisição gera um token de acesso para os demais endpoints da API. O token é disponibilizado no cabeçalho *authorization* da resposta da requisição. A requisição requer um corpo com os seguintes atributos:
         - *username* : string
