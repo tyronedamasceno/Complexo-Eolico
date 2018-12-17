@@ -1,6 +1,6 @@
 # Documentação
 
-A API está rodando no *heroku* e sua URL base é:
+A API está rodando no *heroku* e sua URL base é: https://complexo-eolico.herokuapp.com/
 
 Para usar o sistema, certifique-se de ter suas credenciais em mãos.
 
@@ -45,7 +45,7 @@ Para usar o sistema, certifique-se de ter suas credenciais em mãos.
         -  *nome* : string
         -  *latitude* : string
         -  *longitude* : string
-        -  *potenciaInstalada* : float
+        -  *potenciaInstalada* : floathttps://complexo-eolico.herokuapp.com/
         -  *complexo* : 
             - *id* : integer
     -  **DELETE** - Remove do sistema o Parque Eólico com o *id* especificado.
@@ -57,7 +57,7 @@ Para usar o sistema, certifique-se de ter suas credenciais em mãos.
     -  **GET** - Retorna uma resposta com todos os Aerogeradores cadastrados no sistema.
     -  **POST** - Cadastra um novo Aerogeradores no sistema. A requisição requer um corpo com os seguintes atributos:
         -  *nome* : string
-        -  *latitude* : float
+        -  *latitude* : floathttps://complexo-eolico.herokuapp.com/
         -  *longitude* : float
         -  *alturaTorre* : float
         -  *diametroVarredura* : float
