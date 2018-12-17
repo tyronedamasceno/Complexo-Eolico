@@ -21,6 +21,9 @@ import com.tyrone.domain.Credenciais;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+	private static final String HEADER = "Authorization";
+	private static final String HEADER_PREFIX = "Bearer ";
+	
 	private AuthenticationManager authenticationManager;
 	private JWTUtil jwtUtil;	
 	
@@ -48,7 +51,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		String username = ((UsuarioSS) authResult.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
-		response.addHeader("Authorization", "Bearer " + token);
+		response.addHeader(HEADER, HEADER_PREFIX + token);
 	}
 	
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {

@@ -16,6 +16,10 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+	private static final String HEADER = "Authorization";
+	private static final String HEADER_PREFIX = "Bearer ";
+	private static final Integer PREFIX_LENGTH = 7;
+	
 	private JWTUtil jwtUtil;
 	
 	private UserDetailsService userDetailsService;
@@ -30,9 +34,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		String header = request.getHeader("Authorization");
-		if (header != null && header.startsWith("Bearer ")) {
-			UsernamePasswordAuthenticationToken auth = getAuthentication(request, header.substring(7));
+		String header = request.getHeader(HEADER);
+		if (header != null && header.startsWith(HEADER_PREFIX)) {
+			UsernamePasswordAuthenticationToken auth = getAuthentication(request, header.substring(PREFIX_LENGTH));
 			if (auth != null) {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
